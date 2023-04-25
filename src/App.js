@@ -1,25 +1,27 @@
-import logo from './logo.svg';
+import React from 'react';
+
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+// don't change the Component name "App"
+export default function App() {
+    const [validity, setValidity] = React.useState('Invalid message');
+     
+    const messageChangeHandler = (event) => {
+        const value = event.target.value;
+        
+        if(value.trim().length < 3) {
+            setValidity('Invalid message')
+        } else {
+            setValidity('Valid message')
+        }
+     };
+     
+    return (
+        <form>
+            <label>Your message</label>
+            <input type="text" onChange ={messageChangeHandler} />
+            <p>{validity}</p>
+        </form>
+    );
 }
 
-export default App;
